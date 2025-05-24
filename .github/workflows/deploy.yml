@@ -1,0 +1,165 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - "main"    # Trigger for dev deployment on push to main
+    tags:
+      - "v*"      # Trigger for prod deployment on tag creation (e.g., v1.0, v2.0)
+
+jobs:
+  build-and-deploy-development-server:
+    runs-on: ubuntu-latest
+    environment: development  # Specify dev environment for dev deployment
+
+    if: github.ref == 'refs/heads/main'  # Ensure this only runs on push to main
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install jq (JSON parser)
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Authenticate with Render (Development)
+        env:
+          RENDER_API_TOKEN: ${{ secrets.RENDER_API_TOKEN }}
+        run: |
+          if [ -z "$RENDER_API_TOKEN" ]; then
+            echo "Render API token not provided."
+            exit 1
+          fi
+          echo "Authenticated successfully with Render API."
+
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
+
+      - name: Trigger Render Deployment (Development)
+        run: |
+          response=$(curl -X POST https://api.render.com/deploy/${{ secrets.RENDER_DEPLOYMENT_HOOK_URL }})
+          echo "Development Deployment Triggered"
+
+      - name: Wait for Deployment to Finish (Development)
+        run: |
+          # Poll Render API until deployment finishes (max 15 minutes)
+          max_attempts=30
+          attempt=0
+          deployment_status="pending"
+          
+          while [[ "$deployment_status" != "succeeded" && "$deployment_status" != "failed" && $attempt -lt $max_attempts ]]; do
+            echo "Checking deployment status... attempt #$((attempt + 1))"
+            
+            # Fetch the deployment status
+            deployment_status=$(curl -s -X GET https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys/$deployment_id \
+              -H "Authorization: Bearer ${{ secrets.RENDER_API_TOKEN }}")
+            
+            # Extract the status from the response
+            # Ensure the response is JSON and contains the expected deployment data
+            if [[ $(echo "$deployment_status" | jq 'type') != '"array"' ]]; then
+              echo "Error: Deployment API did not return an array response."
+              exit 1
+            fi
+            deployment_status=$(echo "$deployment_status" | jq -r '.[0].deploy.status')
+          
+            echo "Current deployment status: $deployment_status"
+          
+            if [[ "$deployment_status" == "live" ]]; then
+              echo "Deployment succeeded."
+              break
+            elif [[ "$deployment_status" == "failed" ]]; then
+              echo "Deployment failed."
+              exit 1  # Exit with failure if deployment fails
+            else
+              echo "Deployment is still in progress. Status: $deployment_status"
+            
+            fi
+          
+            # Wait for 30 seconds before checking again
+            sleep 30
+            attempt=$((attempt + 1))
+          done
+          
+          if [ $attempt -ge $max_attempts ]; then
+            echo "Deployment did not complete in the expected time frame."
+            exit 1  # Exit with failure if deployment takes too long
+          fi
+
+  build-and-deploy-production-server:
+    runs-on: ubuntu-latest
+    environment: production  # Specify prod environment for prod deployment
+
+    if: startsWith(github.ref, 'refs/tags/v')  # Ensure this only runs on tag creation
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install jq (JSON parser)
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Authenticate with Render (Production)
+        env:
+          RENDER_API_TOKEN: ${{ secrets.RENDER_API_TOKEN }}
+        run: |
+          if [ -z "$RENDER_API_TOKEN" ]; then
+            echo "Render API token not provided."
+            exit 1
+          fi
+          echo "Authenticated successfully with Render API."
+
+      - name: Build Docker Image
+        run: |
+          docker build -t ${{ secrets.DOCKER_IMAGE_NAME }}:latest .
+
+      - name: Trigger Render Deployment (Production)
+        run: |
+          response=$(curl -X POST https://api.render.com/deploy/${{ secrets.RENDER_DEPLOYMENT_HOOK_URL }})
+          echo "Production Deployment Triggered"
+
+      - name: Wait for Deployment to Finish (Production)
+        run: |
+          # Poll Render API until deployment finishes (max 15 minutes)
+          max_attempts=30
+          attempt=0
+          deployment_status="pending"
+          
+          while [[ "$deployment_status" != "succeeded" && "$deployment_status" != "failed" && $attempt -lt $max_attempts ]]; do
+            echo "Checking deployment status... attempt #$((attempt + 1))"
+            
+            # Fetch the deployment status
+            deployment_status=$(curl -s -X GET https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys/$deployment_id \
+              -H "Authorization: Bearer ${{ secrets.RENDER_API_TOKEN }}")
+            
+            # Extract the status from the response
+            # Ensure the response is JSON and contains the expected deployment data
+            if [[ $(echo "$deployment_status" | jq 'type') != '"array"' ]]; then
+              echo "Error: Deployment API did not return an array response."
+              exit 1
+            fi
+            deployment_status=$(echo "$deployment_status" | jq -r '.[0].deploy.status')
+          
+            echo "Current deployment status: $deployment_status"
+          
+            if [[ "$deployment_status" == "live" ]]; then
+              echo "Deployment succeeded."
+              break
+            elif [[ "$deployment_status" == "failed" ]]; then
+              echo "Deployment failed."
+              exit 1  # Exit with failure if deployment fails
+            else
+              echo "Deployment is still in progress. Status: $deployment_status"
+            
+            fi
+          
+            # Wait for 30 seconds before checking again
+            sleep 30
+            attempt=$((attempt + 1))
+          done
+          
+          if [ $attempt -ge $max_attempts ]; then
+            echo "Deployment did not complete in the expected time frame."
+            exit 1  # Exit with failure if deployment takes too long
+          fi
