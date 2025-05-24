@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "scrapesome"
 version = "0.0.1"
-description = "web scraper with dynamic rendering support."
+description = "A Powerful Web Scraper with dynamic rendering support."
 authors = [
-    { name = "Vishnu Vardhan Reddy", email = "gvvr2001@gmail.com" }
+    { name = "Vishnu Vardhan Reddy", email = "gvvr2024@gmail.com" }
 ]
 license = { file = "LICENSE" }
 readme = "README.md"

@@ -4,14 +4,16 @@
 ## Sync Example
 
 ```python
-from scrapesome.scraper import scraper
+from scrapesome.scraper.sync_scraper import scraper
 html = scraper("https://example.com")
+html
 ```
 
 ## Async Example
 
 ```python
 import asyncio
-from scrapesome.scraper import async_scraper
-html = asyncio.run(async_scraper("https://example.com"))
+from scrapesome.scraper.async_scraper import scraper
+html = asyncio.run(scraper("https://example.com"))
+html
 ```

@@ -25,9 +25,9 @@ pip install scrapesome
 Synchronous Example
 
 ```python
-from scrapesome.scraper import scraper
-
+from scrapesome.scraper.sync_scraper import scraper
 html = scraper("https://example.com")
+html
 ```
 
 
@@ -35,9 +35,9 @@ Asynchronous Example
 
 ```python
 import asyncio
-from scrapesome.scraper import async_scraper
-
-html = asyncio.run(async_scraper("https://example.com"))
+from scrapesome.scraper.async_scraper import scraper
+html = asyncio.run(scraper("https://example.com"))
+html
 ```
 
 ## 🧰 Advanced Usage
@@ -45,20 +45,28 @@ html = asyncio.run(async_scraper("https://example.com"))
 Force Rendering (Playwright)
 
 ```python
-scraper("https://example.com", force_playwright=True)
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://example.com", force_playwright=True)
+content
 ```
 
 Custom User Agents
 
 ```python
-scraper("https://example.com", user_agents=["MyCustomAgent/1.0"])
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://example.com", user_agents=["MyCustomAgent/1.0"])
+content
 ```
 
 Control Redirects
 
 ```python
-scraper("https://example.com", allow_redirects=False)
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://example.com", allow_redirects=False)
+content
 ```
+
+Similarly async can also be used.
 
 ## 🧪 Testing
 Run tests with:
@@ -94,7 +102,9 @@ JSON Example
 Get `json` version
 
 ```python
-scraper("https://example.com", format_type="json")
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://example.com", format_type="json")
+content
 ```
 
 Output
@@ -112,7 +122,9 @@ Output
 Convert HTML to Markdown with:
 
 ```python
-scraper("https://example.com", format_type="markdown")
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://adenuniversity.us", format_type="markdown")
+content
 ```
 Output
 
@@ -162,7 +174,7 @@ The Global MBA is designed to prepare business leaders to manage companies in an
 * **Spanish and English**
 ```
 
-
+Similarly async can also be used.
 
 ## 📁 Project Structure
 

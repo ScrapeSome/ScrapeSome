@@ -29,6 +29,6 @@ Contributions are welcome! Whether it's bug reports, feature suggestions, or pul
 To get started:
 
 ```bash
-git clone https://github.com/yourname/scrapesome.git
+git clone https://github.com/ScrapeSome/scrapesome.git
 cd scrapesome
 ```

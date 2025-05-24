@@ -5,7 +5,9 @@ JSON Example
 Get `json` version
 
 ```python
-scraper("https://example.com", format_type="json")
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://example.com", format_type="json")
+content
 ```
 
 Output
@@ -23,7 +25,9 @@ Output
 Convert HTML to Markdown with:
 
 ```python
-scraper("https://example.com", format_type="markdown")
+from scrapesome.scraper.sync_scraper import scraper
+content = scraper("https://example.com", format_type="markdown")
+content
 ```
 Output
 
@@ -72,3 +76,5 @@ The Global MBA is designed to prepare business leaders to manage companies in an
 * **14** months
 * **Spanish and English**
 ```
+
+Similarly async can also be used.
