@@ -1,0 +1,15 @@
+site_name: ScrapeSome
+theme:
+  name: material
+  palette:
+    primary: green
+    accent: black
+nav:
+  - Home: index.md
+  - About: about.md
+  - Getting Started: getting-started.md
+  - Advanced Usage: usage.md
+  - Environment Configuration: config.md
+  - Output Formats: output-formats.md
+  - Examples: examples.md
+  - Licence: licence.md

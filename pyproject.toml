@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scrapesome"
+version = "0.0.1"
+description = "web scraper with dynamic rendering support."
+authors = [
+    { name = "Vishnu Vardhan Reddy", email = "gvvr2001@gmail.com" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.6"
+
+[tool.setuptools]
+packages = ["scrapesome"]
+
+[project.urls]
+"Homepage" = "https://scrapesome.onrender.com"
+"Repository" = "https://github.com/ScrapeSome/ScrapeSome"

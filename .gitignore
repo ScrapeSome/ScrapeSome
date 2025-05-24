@@ -172,3 +172,21 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+# Files
+*env
+*.txt
+*.json
+*.pdf
+*.docx
+*.doc
+*.csv
+*.xlsx
+*htmlcov
+dockerfile
+.dockerignore
+
+/app
+
+!requirements.txt
