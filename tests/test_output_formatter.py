@@ -44,19 +44,19 @@ def test_format_response_none_returns_html():
     assert result == "<html>Test</html>"
 
 def test_format_response_text():
-    result = of.format_response("<p>Hello</p>", format_type="text")
+    result = of.format_response("<p>Hello</p>", output_format_type="text")
     assert "Hello" in result
 
 def test_format_response_json():
-    result = of.format_response(HTML_SAMPLE, url="http://fake.com", format_type="json")
+    result = of.format_response(HTML_SAMPLE, url="http://fake.com", output_format_type="json")
     assert isinstance(result, dict)
     assert result["title"] == "Test Page"
 
 def test_format_response_markdown():
-    result = of.format_response("<h1>Hi</h1>", format_type="markdown")
+    result = of.format_response("<h1>Hi</h1>", output_format_type="markdown")
     assert "# Hi" in result
 
 def test_format_response_unknown_format():
     html = "<p>Test</p>"
-    result = of.format_response(html, format_type="unknown")
+    result = of.format_response(html, output_format_type="unknown")
     assert result == html

@@ -2,7 +2,7 @@
 from unittest.mock import patch, AsyncMock
 import pytest
 import httpx
-from scrapesome.scraper.async_scraper import scraper
+from scrapesome.scraper.async_scraper import async_scraper
 
 # SUCCESS: HTTP response returns content and gets formatted
 @pytest.mark.asyncio
@@ -16,7 +16,7 @@ async def test_async_scraper_success_with_format(mock_get, mock_format_response)
 
     mock_format_response.return_value = "Hello World"
 
-    result = await scraper("http://fake.com", format_type="text")
+    result = await async_scraper("http://fake.com", output_format_type="text")
     assert result == "Hello World"
 
 # SUCCESS: fallback to JS rendering if content is too short
@@ -31,7 +31,7 @@ async def test_async_scraper_fallback_to_render(mock_get, mock_render):
 
     mock_render.return_value = "<html><body>Rendered Content</body></html>"
 
-    result = await scraper("http://fake.com")
+    result = await async_scraper("http://fake.com")
     assert "Rendered Content" in result
 
 # SUCCESS: force Playwright rendering directly
@@ -40,7 +40,7 @@ async def test_async_scraper_fallback_to_render(mock_get, mock_render):
 async def test_async_scraper_force_playwright(mock_render):
     mock_render.return_value = "<html><body>Playwright Rendered</body></html>"
 
-    result = await scraper("http://fake.com", force_playwright=True)
+    result = await async_scraper("http://fake.com", force_playwright=True)
     assert "Playwright Rendered" in result
 
 # FAILURE: all retries fail, and fallback fails too
@@ -48,7 +48,7 @@ async def test_async_scraper_force_playwright(mock_render):
 @patch("scrapesome.scraper.async_scraper.async_render_page", side_effect=Exception("Render fail"))
 @patch("scrapesome.scraper.async_scraper.httpx.AsyncClient.get", side_effect=Exception("HTTP fail"))
 async def test_async_scraper_all_failures(mock_get, mock_render):
-    result = await scraper("http://fake.com")
+    result = await async_scraper("http://fake.com")
     assert result is None
 
 
@@ -70,7 +70,7 @@ async def test_async_scraper_retries_on_403_then_succeeds(mock_get, mock_render)
     mock_get.side_effect = [mock_403, mock_200]
 
     # Call your async scraper
-    result = await scraper("http://fake.com")
+    result = await async_scraper("http://fake.com")
 
     # Assert recovered content found in result
     assert "Recovered" in result
@@ -86,7 +86,7 @@ async def test_async_scraper_retries_on_403_then_succeeds(mock_get, mock_render)
 async def test_async_scraper_retries_exhausted_then_render_fallback(mock_render, mock_get):
     mock_get.side_effect = httpx.RequestError("Request failed")
     mock_render.return_value = "<html>Fallback Render</html>"
-    result = await scraper("http://fake.com", max_retries=2)
+    result = await async_scraper("http://fake.com", max_retries=2)
     assert "Fallback Render" in result
 
 # short content triggers fallback to render_page
@@ -97,5 +97,5 @@ async def test_async_scraper_short_content_triggers_render(mock_render, mock_get
     mock_resp = AsyncMock(status_code=200, text="short")
     mock_get.return_value = mock_resp
     mock_render.return_value = "<html>Rendered Content</html>"
-    result = await scraper("http://fake.com")
+    result = await async_scraper("http://fake.com")
     assert "Rendered Content" in result
