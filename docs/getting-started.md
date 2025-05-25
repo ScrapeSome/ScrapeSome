@@ -4,8 +4,8 @@
 ## Sync Example
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-html = scraper("https://example.com")
+from scrapesome.scraper.sync_scraper import sync_scraper
+html = sync_scraper("https://example.com")
 html
 ```
 
@@ -13,7 +13,7 @@ html
 
 ```python
 import asyncio
-from scrapesome.scraper.async_scraper import scraper
-html = asyncio.run(scraper("https://example.com"))
+from scrapesome.scraper.async_scraper import async_scraper
+html = asyncio.run(async_scraper("https://example.com"))
 html
 ```

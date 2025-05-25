@@ -72,30 +72,30 @@ def get_markdown(html: str) -> str:
 def format_response(
     html: str, 
     url: Optional[str] = None, 
-    format_type: Optional[str] = None
+    output_format_type: Optional[str] = None
 ) -> Union[str, dict]:
     """
-    Formats the HTML response content based on format_type.
+    Formats the HTML response content based on output_format_type.
 
     Args:
         html (str): Raw HTML content.
         url (Optional[str]): URL of the page (used in JSON output).
-        format_type (Optional[str]): One of None, "text", "json", or "markdown".
+        output_format_type (Optional[str]): One of None, "text", "json", or "markdown".
 
     Returns:
         Union[str, dict]: Formatted output as raw HTML, plain text, markdown, or dict.
     """
-    if format_type is None:
+    if output_format_type is None:
         return html
 
-    if format_type == "text":
+    if output_format_type == "text":
         return get_text(html)
 
-    if format_type == "json":
+    if output_format_type == "json":
         return get_json(html, url)
 
-    if format_type == "markdown":
+    if output_format_type == "markdown":
         return get_markdown(html)
 
-    # Fallback: unknown format_type returns raw HTML
+    # Fallback: unknown output_format_type returns raw HTML
     return html

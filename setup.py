@@ -19,22 +19,33 @@ Usage:
         $ twine upload dist/*
 """
 
-from setuptools import setup, find_packages
+import pathlib
+import re
+from setuptools import setup
+
+here = pathlib.Path(__file__).parent
+long_description = (here / "README.md").read_text(encoding="utf-8")
+
+
+# Read the version string from scrapesome/__init__.py without importing the package
+def read_version():
+    """Read version dynamically"""
+    version_file = here / "scrapesome" / "__init__.py"
+    version_content = version_file.read_text(encoding="utf-8")
+    version_match = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', version_content, re.MULTILINE)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError("Unable to find version string.")
+
+version = read_version()
 
 setup(
     name="scrapesome",
-    version="0.0.1",
+    version=version,
     author="Vishnu Vardhan Reddy",
-    author_email="gvvr2001@gmail.com",
-    description="web scraper with dynamic rendering support.",
-    long_description=open("README.md", encoding="utf-8").read(),
+    author_email="gvvr2024@gmail.com",
+    description="A Powerful Web Scraper with dynamic rendering support.",
+    long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ScrapeSome/ScrapeSome",
-    packages=find_packages(include=["scrapesome", "scrapesome.*"]),
-    classifiers=[
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-    ],
-    python_requires=">=3.6",
+    url="https://github.com/ScrapeSome/ScrapeSome"
 )

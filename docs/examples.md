@@ -2,20 +2,20 @@
 ## Sync Examples
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
+from scrapesome.scraper.sync_scraper import sync_scraper
 
 if __name__ == "__main__":
     url = "https://adenuniversity.us"
     format_type = "text"
     with open("test.txt","w", encoding="utf-8") as f:
-        f.write(str(scraper(url=url,format_type=format_type)))
+        f.write(str(sync_scraper(url=url,format_type=format_type)))
 ```
 
 ## Async Examples
 
 ```python
 import asyncio
-from scrapesome.scraper.async_scraper import scraper as async_scraper
+from scrapesome.scraper.async_scraper import async_scraper
 
 async def main():
     url = "https://www.sandiego.edu/academics/"

@@ -4,18 +4,28 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scrapesome"
-version = "0.0.2"
+dynamic = ["version"]
 description = "A Powerful Web Scraper with dynamic rendering support."
 authors = [
     { name = "Vishnu Vardhan Reddy", email = "gvvr2024@gmail.com" }
 ]
 license = { file = "LICENSE" }
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.8"
+dependencies=[
+    "python-dotenv>=0.5.0,<2.0",
+    "playwright>=1.40.0,<2.0",
+    "beautifulsoup4>=4.5.0,<5.0",
+    "httpx>=0.20.0,<1.0",
+    "requests>=2.18.0,<3.0",
+    "markdownify>=1.0.0,<2.0"
+]
 
-[tool.setuptools]
-packages = ["scrapesome"]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scrapesome*"]
 
 [project.urls]
 "Homepage" = "https://scrapesome.onrender.com"
+"Documentation" = "https://scrapesome.onrender.com/documentation"
 "Repository" = "https://github.com/ScrapeSome/ScrapeSome"

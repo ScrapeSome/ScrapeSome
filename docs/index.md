@@ -35,15 +35,41 @@ Target coverage: 75–100%
 
 ```bash
 scrapesome/
+├── .gitignore
+├── pytest.ini
+├── .github/
+│   ├── workflows/
+│       └── deploy.yml
+├── __init__.py
 ├── config.py
 ├── exceptions.py
 ├── formatter/
+│   ├── __init__.py
 │   └── output_formatter.py
 ├── logging.py
 ├── scraper/
+│   ├── __init__.py
 │   ├── async_scraper.py
 │   ├── sync_scraper.py
 │   └── rendering.py
+├── docs/
+│   ├── index.md
+│   ├── getting_started.md
+│   ├── usage.md
+│   ├── config.md
+│   ├── examples.md
+│   ├── about.md
+│   └── licence.md
+├── tests/
+│   ├── __init__.py
+│   ├── test_sync_scraper.py
+│   ├── test_async_scraper.py
+│   └── test_config.py
+├── setup.py
+├── requirements.txt
+├── pyproject.toml
+├── LICENSE
+└── README.md
 ```
 
 ## 🔒 License

@@ -28,21 +28,15 @@ settings = Settings()
 
 logger = get_logger()
 
-DEFAULT_USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15",
-    "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:115.0) Gecko/20100101 Firefox/115.0",
-]
 
-
-def scraper(
+def sync_scraper(
     url: str,
     user_agents: Optional[List[str]] = None,
     allow_redirects: bool = True,
     max_retries: int = 3,
-    timeout: int = int(settings.fetch_page_timeout),
+    timeout: int = None,
     force_playwright: bool = False,
-    format_type: Optional[str] = None
+    output_format_type: Optional[str] = None
 ) -> Optional[str]:
     """
     Scrape a URL synchronously with retries, user-agent rotation,
@@ -55,12 +49,20 @@ def scraper(
         max_retries (int): Number of retry attempts on failure or 403 responses.
         timeout (int): HTTP request timeout in seconds.
         force_playwright (bool): If True, skip HTTP requests and use Playwright rendering directly.
-        format_type (Optional[str]): Output format: 'text', 'json', 'markdown', or None for raw HTML.
+        output_format_type (Optional[str]): Output format: 'text', 'json', 'markdown', or None for raw HTML.
 
     Returns:
         Optional[str]: The formatted page content or None if an error occurred.
     """
     try:
+
+        if not timeout:
+            timeout = int(settings.fetch_page_timeout)
+        if not user_agents:
+            user_agents = settings.default_user_agents
+        if not output_format_type:
+            output_format_type = settings.default_output_format
+
         content = fetch_url(
             url=url,
             user_agents=user_agents,
@@ -69,8 +71,8 @@ def scraper(
             timeout=timeout,
             force_playwright=force_playwright,
         )
-        if format_type:
-            content = format_response(html=content, url=url, format_type=format_type)
+        if output_format_type:
+            content = format_response(html=content, url=url, output_format_type=output_format_type)
         return content
     except Exception as e:
         logger.exception(e)
@@ -96,13 +98,13 @@ def fetch_url(
         force_playwright (bool): If True, skip requests and use Playwright rendering directly.
 
     Returns:
-        str: HTML content of the page.
+        str: HTML content of the page or None if an error occurred..
 
     Raises:
         ScraperError: On failure after retries or rendering fallback.
     """
     if user_agents is None:
-        user_agents = DEFAULT_USER_AGENTS
+        user_agents = settings.default_user_agents
 
     if force_playwright:
         logger.info(f"Force Playwright rendering enabled for URL: {url}")

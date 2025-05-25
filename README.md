@@ -25,8 +25,8 @@ pip install scrapesome
 Synchronous Example
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-html = scraper("https://example.com")
+from scrapesome.scraper.sync_scraper import sync_scraper
+html = sync_scraper("https://example.com")
 html
 ```
 
@@ -35,8 +35,8 @@ Asynchronous Example
 
 ```python
 import asyncio
-from scrapesome.scraper.async_scraper import scraper
-html = asyncio.run(scraper("https://example.com"))
+from scrapesome.scraper.async_scraper import async_scraper
+html = asyncio.run(async_scraper("https://example.com"))
 html
 ```
 
@@ -45,24 +45,24 @@ html
 Force Rendering (Playwright)
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-content = scraper("https://example.com", force_playwright=True)
+from scrapesome.scraper.sync_scraper import sync_scraper
+content = sync_scraper("https://example.com", force_playwright=True)
 content
 ```
 
 Custom User Agents
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-content = scraper("https://example.com", user_agents=["MyCustomAgent/1.0"])
+from scrapesome.scraper.sync_scraper import sync_scraper
+content = sync_scraper("https://example.com", user_agents=["MyCustomAgent/1.0"])
 content
 ```
 
 Control Redirects
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-content = scraper("https://example.com", allow_redirects=False)
+from scrapesome.scraper.sync_scraper import sync_scraper
+content = sync_scraper("https://example.com", allow_redirects=False)
 content
 ```
 
@@ -83,17 +83,19 @@ Example .env
 
 ```env
 LOG_LEVEL=INFO
-EXPORT_FORMAT=text
+OUTPUT_FORMAT=text
 FETCH_PLAYWRIGHT_TIMEOUT=10
 FETCH_PAGE_TIMEOUT=10
+USER_AGENTS=["Mozilla/5.0 (Windows NT 10.0; Win64; x64)......."]
 ```
 
-| Variable                 | Description                                          |
+| Key                      | Description                                          |
 |--------------------------|------------------------------------------------------|
 | FETCH_PLAYWRIGHT_TIMEOUT | Timeout for Playwright-rendered pages (in seconds)  |
 | FETCH_PAGE_TIMEOUT       | Timeout for standard page fetch (in seconds)        |
 | LOG_LEVEL                | Logging verbosity (DEBUG, INFO, WARNING, etc.)      |
-| EXPORT_FORMAT            | Default export format (text, markdown, json, html)  |
+| OUTPUT_FORMAT            | Default output format (text, markdown, json, html)  |
+| USER_AGENTS              | Default user agents ("Mozilla/5.0 (Windows NT 10.0; Win64; x64).......")  |
 
 ## 📄 Output Formats
 
@@ -102,8 +104,8 @@ JSON Example
 Get `json` version
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-content = scraper("https://example.com", format_type="json")
+from scrapesome.scraper.sync_scraper import sync_scraper
+content = sync_scraper("https://example.com", format_type="json")
 content
 ```
 
@@ -122,8 +124,8 @@ Output
 Convert HTML to Markdown with:
 
 ```python
-from scrapesome.scraper.sync_scraper import scraper
-content = scraper("https://adenuniversity.us", format_type="markdown")
+from scrapesome.scraper.sync_scraper import sync_scraper
+content = sync_scraper("https://adenuniversity.us", format_type="markdown")
 content
 ```
 Output
@@ -180,15 +182,41 @@ Similarly async can also be used.
 
 ```text
 scrapesome/
+├── .gitignore
+├── pytest.ini
+├── .github/
+│   ├── workflows/
+│       └── deploy.yml
+├── __init__.py
 ├── config.py
 ├── exceptions.py
 ├── formatter/
+│   ├── __init__.py
 │   └── output_formatter.py
 ├── logging.py
 ├── scraper/
+│   ├── __init__.py
 │   ├── async_scraper.py
 │   ├── sync_scraper.py
 │   └── rendering.py
+├── docs/
+│   ├── index.md
+│   ├── getting_started.md
+│   ├── usage.md
+│   ├── config.md
+│   ├── examples.md
+│   ├── about.md
+│   └── licence.md
+├── tests/
+│   ├── __init__.py
+│   ├── test_sync_scraper.py
+│   ├── test_async_scraper.py
+│   └── test_config.py
+├── setup.py
+├── requirements.txt
+├── pyproject.toml
+├── LICENSE
+└── README.md
 ```
 
 ## 🔒 License

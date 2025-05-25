@@ -9,7 +9,7 @@ Raises:
 """
 
 import os
-import logging
+from typing import Any
 
 class Settings:
     """
@@ -24,13 +24,18 @@ class Settings:
         self.max_workers = self._get("MAX_WORKERS", default="1")
 
         #📤 Output Format Defaults
-        self.default_export_format = self._get("EXPORT_FORMAT", default="text")
+        self.default_output_format = self._get("OUTPUT_FORMAT", default="html")
 
         self.fetch_playwright_timeout = self._get("FETCH_PLAYWRIGHT_TIMEOUT", default="60000")
         self.fetch_page_timeout = self._get("FETCH_PAGE_TIMEOUT", default="60000")
+        self.default_user_agents = self._get("USER_AGENTS", default=[
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36",
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15",
+            "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:115.0) Gecko/20100101 Firefox/115.0",
+        ])
 
 
-    def _get(self, key: str, default: str | None = None) -> str:
+    def _get(self, key: str, default: Any | None = None):
         """
         Retrieve an environment variable, or raise an error if missing and no default is provided.
 
@@ -39,7 +44,7 @@ class Settings:
             default (Optional[str]): Default value if the variable is not set.
 
         Returns:
-            str: The value of the environment variable.
+            any: The value of the environment variable.
 
         Raises:
             EnvironmentError: If the variable is not set and no default is provided.

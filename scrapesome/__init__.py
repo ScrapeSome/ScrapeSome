@@ -4,12 +4,10 @@ ScrapeSome Library
 
 Main entry point for the ScrapeSome scraping library.
 
-Usage:
-    from scrapesome import scrape_page
+Basic Usage:
+    from scrapesome.scraper.sync_scraper import scraper
 
-    result = scrape_page("https://example.com", format="markdown")
+    result = scraper("https://example.com")
+    print(result)
 """
-
-
-
-__all__ = ["scrape_page"]
+__version__ = "0.0.3"

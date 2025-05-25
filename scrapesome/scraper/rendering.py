@@ -15,7 +15,8 @@ Usage:
     from scrapesome.scraper.rendering import sync_render_page, async_render_page
 """
 
-from typing import Optional
+import random
+from typing import Optional, List
 from playwright.sync_api import sync_playwright, TimeoutError as SyncTimeoutError
 from playwright.async_api import async_playwright, TimeoutError as AsyncTimeoutError
 from scrapesome.logging import get_logger
@@ -41,7 +42,7 @@ def _should_block(request_url: str, resource_type: str) -> bool:
     return resource_type in blocked_resources or "ads" in request_url
 
 
-def sync_render_page(url: str, headers: Optional[dict] = None, timeout: int = int(settings.fetch_playwright_timeout)) -> str:
+def sync_render_page(url: str, headers: Optional[dict] = None, timeout: int = int(settings.fetch_playwright_timeout), user_agents: Optional[List[str]] = None) -> str:
     """
     Renders the given URL using synchronous Playwright with headless Chromium.
 
@@ -60,7 +61,14 @@ def sync_render_page(url: str, headers: Optional[dict] = None, timeout: int = in
     try:
         with sync_playwright() as p:
             browser = p.chromium.launch(headless=True)
-            context = browser.new_context()
+            
+            context_args = {}
+            context_args["java_script_enabled"] = True
+            if user_agents:
+                context_args["user_agent"] = random.choice(user_agents)
+            
+
+            context = browser.new_context(user_agent=context_args["user_agent"], java_script_enabled=context_args["java_script_enabled"])
 
             # Block images and ads for performance
             context.route("**/*", lambda route, request: route.abort()
@@ -94,7 +102,7 @@ def sync_render_page(url: str, headers: Optional[dict] = None, timeout: int = in
                 pass
 
 
-async def async_render_page(url: str, headers: Optional[dict] = None, timeout: int = int(settings.fetch_playwright_timeout)) -> str:
+async def async_render_page(url: str, headers: Optional[dict] = None, timeout: int = int(settings.fetch_playwright_timeout), user_agents: Optional[List[str]] = None) -> str:
     """
     Renders the given URL using asynchronous Playwright with headless Chromium.
 
@@ -113,7 +121,14 @@ async def async_render_page(url: str, headers: Optional[dict] = None, timeout: i
     try:
         async with async_playwright() as p:
             browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context()
+            context_args = {}
+            context_args["java_script_enabled"] = True
+            if user_agents:
+                context_args["user_agent"] = random.choice(user_agents)
+            
+
+            context = browser.new_context(user_agent=context_args["user_agent"], java_script_enabled=context_args["java_script_enabled"])
+
 
             # Block images and ads for performance
             await context.route("**/*", lambda route, request: route.abort()
