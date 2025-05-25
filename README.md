@@ -1,4 +1,7 @@
-# 🕷️ ScrapeSome
+
+![Scrapesome Logo](docs/assets/images/favicon.png)
+
+# ScrapeSome
 
 **ScrapeSome** is a lightweight, flexible web scraping library with both **synchronous** and **asynchronous** support. It includes intelligent fallbacks, JavaScript page rendering, response formatting (HTML → Text/JSON/Markdown), and retry mechanisms. Ideal for developers who need robust scraping utilities with minimal setup.
 
