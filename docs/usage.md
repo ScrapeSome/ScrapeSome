@@ -21,4 +21,4 @@ from scrapesome.scraper.sync_scraper import sync_scraper
 content = sync_scraper("https://example.com", allow_redirects=False)
 content
 ```
-Similarly async can also be used.
+similarly **async_scraper** can also be used.

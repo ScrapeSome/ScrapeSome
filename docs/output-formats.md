@@ -77,4 +77,4 @@ The Global MBA is designed to prepare business leaders to manage companies in an
 * **Spanish and English**
 ```
 
-Similarly async can also be used.
+similarly **async_scraper** can also be used.

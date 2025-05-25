@@ -66,7 +66,7 @@ content = sync_scraper("https://example.com", allow_redirects=False)
 content
 ```
 
-Similarly async can also be used.
+similarly **async_scraper** can also be used.
 
 ## 🧪 Testing
 Run tests with:
@@ -176,7 +176,7 @@ The Global MBA is designed to prepare business leaders to manage companies in an
 * **Spanish and English**
 ```
 
-Similarly async can also be used.
+similarly **async_scraper** can also be used.
 
 ## 📁 Project Structure
 
@@ -222,6 +222,13 @@ scrapesome/
 ## 🔒 License
 MIT License © 2025
 
-## 🧑‍💻 Author
-Crafted with care by `Vishnu Vardhan Reddy`
-Contributions welcome! 🙌
+## 🤝 Contributions
+
+Contributions are welcome! Whether it's bug reports, feature suggestions, or pull requests — your help is appreciated.
+
+To get started:
+
+```bash
+git clone https://github.com/scrapesome/scrapesome.git
+cd scrapesome
+```

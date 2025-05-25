@@ -1,6 +1,6 @@
 ### ⚙️ Environment Configuration
 
-Scrapesome supports environment-based configuration via a `.env` file.
+**ScrapeSome** supports environment-based configuration via a `.env` file.
 
 | Key                      | Description                                          |
 |--------------------------|------------------------------------------------------|

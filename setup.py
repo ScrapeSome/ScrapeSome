@@ -10,11 +10,6 @@ Features:
 - Loads the long description from `README.md` for display on PyPI.
 - Defines Python version requirements and package classifiers.
 
-Usage:
-    To build and install the package locally:
-        $ python setup.py sdist bdist_wheel
-        $ pip install dist/scrapesome-0.0.1-py3-none-any.whl
-
     To upload to PyPI (after configuring credentials):
         $ twine upload dist/*
 """
@@ -47,5 +42,5 @@ setup(
     description="A Powerful Web Scraper with dynamic rendering support.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ScrapeSome/ScrapeSome"
+    url="https://github.com/scrapesome/scrapesome"
 )

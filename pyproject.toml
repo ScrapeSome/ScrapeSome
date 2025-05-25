@@ -28,4 +28,4 @@ include = ["scrapesome*"]
 [project.urls]
 "Homepage" = "https://scrapesome.onrender.com"
 "Documentation" = "https://scrapesome.onrender.com/documentation"
-"Repository" = "https://github.com/ScrapeSome/ScrapeSome"
+"Repository" = "https://github.com/scrapesome/scrapesome"

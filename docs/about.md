@@ -17,7 +17,7 @@
 | Resource           | URL                                                   |
 |--------------------|--------------------------------------------------------|
 | 📦 PyPI Package     | [https://pypi.org/project/scrapesome/](https://pypi.org/project/scrapesome/) |
-| 🧑‍💻 GitHub Repo     | [https://github.com/ScrapeSome/ScrapeSome](https://github.com/ScrapeSome/ScrapeSome) |
+| 🧑‍💻 GitHub Repo     | [https://github.com/scrapesome/scrapesome](https://github.com/scrapesome/scrapesome) |
 | 📄 Documentation    | [https://scrapesome.onrender.com](https://scrapesome.onrender.com) |
 
 ---
@@ -29,6 +29,6 @@ Contributions are welcome! Whether it's bug reports, feature suggestions, or pul
 To get started:
 
 ```bash
-git clone https://github.com/ScrapeSome/ScrapeSome.git
+git clone https://github.com/scrapesome/scrapesome.git
 cd scrapesome
 ```
