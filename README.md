@@ -1,5 +1,5 @@
 
-![Scrapesome Logo](docs/assets/images/favicon.png)
+![Scrapesome Logo](https://raw.githubusercontent.com/scrapesome/scrapesome/refs/heads/main/docs/assets/images/favicon.png)
 
 # ScrapeSome
 
