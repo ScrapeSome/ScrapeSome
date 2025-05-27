@@ -1,6 +1,8 @@
-# 🕷️ ScrapeSome
+# ScrapeSome
 
 Welcome to the documentation for **ScrapeSome** — a modern, async/sync-capable web scraping library with smart fallbacks and HTML formatting.
+
+![Scrapesome Logo](https://raw.githubusercontent.com/scrapesome/scrapesome/refs/heads/main/docs/assets/images/favicon.png)
 
 **ScrapeSome** is a lightweight, flexible web scraping library with both **synchronous** and **asynchronous** support. It includes intelligent fallbacks, JavaScript page rendering, response formatting (HTML → Text/JSON/Markdown), and retry mechanisms. Ideal for developers who need robust scraping utilities with minimal setup.
 
@@ -33,7 +35,7 @@ Target coverage: 75–100%
 
 ## 📁 Project Structure
 
-```bash
+```text
 scrapesome/
 ├── .gitignore
 ├── pytest.ini

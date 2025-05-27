@@ -1,11 +1,27 @@
+# ScrapeSome
 
 ![Scrapesome Logo](https://raw.githubusercontent.com/scrapesome/scrapesome/refs/heads/main/docs/assets/images/favicon.png)
-
-# ScrapeSome
 
 **ScrapeSome** is a lightweight, flexible web scraping library with both **synchronous** and **asynchronous** support. It includes intelligent fallbacks, JavaScript page rendering, response formatting (HTML → Text/JSON/Markdown), and retry mechanisms. Ideal for developers who need robust scraping utilities with minimal setup.
 
 ---
+
+## Table of Contents
+
+- [🚀 Features](#-features)
+- [📦 Installation](#-installation)
+- [Playwright Setup](#playwright-setup)
+  - [Windows](#windows)
+  - [Linux (Ubuntu/Debian)](#linux-ubuntudebian)
+  - [macOS](#macos)
+- [⚡ Quick Start](#-quick-start)
+- [🧰 Advanced Usage](#-advanced-usage)
+- [🧪 Testing](#-testing)
+- [⚙️ Environment Configuration](#️-environment-configuration)
+- [📄 Output Formats](#-output-formats)
+- [📁 Project Structure](#-project-structure)
+- [🔒 License](#-license)
+- [🤝 Contributions](#-contributions)
 
 ## 🚀 Features
 
