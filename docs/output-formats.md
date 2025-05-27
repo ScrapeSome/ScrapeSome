@@ -5,7 +5,7 @@ JSON Example
 Get `json` version
 
 ```python
-from scrapesome.scraper.sync_scraper import sync_scraper
+from scrapesome import sync_scraper
 content = sync_scraper("https://example.com", output_format_type="json")
 content
 ```
@@ -25,7 +25,7 @@ Output
 Convert HTML to Markdown with:
 
 ```python
-from scrapesome.scraper.sync_scraper import sync_scraper
+from scrapesome import sync_scraper
 content = sync_scraper("https://example.com", output_format_type="markdown")
 content
 ```

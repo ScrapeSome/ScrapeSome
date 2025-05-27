@@ -1,6 +1,8 @@
 site_name: ScrapeSome
 theme:
   name: material
+  logo: assets/images/favicon.png
+  favicon: assets/images/favicon.png
   palette:
     primary: green
     accent: black
@@ -13,3 +15,5 @@ nav:
   - Output Formats: output-formats.md
   - Examples: examples.md
   - Licence: licence.md
+extra:
+  social_image: assets/images/favicon.png

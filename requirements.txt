@@ -4,3 +4,10 @@ beautifulsoup4==4.13.4
 httpx==0.28.1
 requests==2.32.3
 markdownify==1.1.0
+
+#additional
+pytest==8.3.5
+pytest-cov==6.1.1
+pytest-asyncio==1.0.0
+mkdocs==1.6.1
+mkdocs-material==9.6.14

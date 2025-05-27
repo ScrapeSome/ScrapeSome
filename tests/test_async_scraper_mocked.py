@@ -2,22 +2,24 @@
 from unittest.mock import patch, AsyncMock
 import pytest
 import httpx
-from scrapesome.scraper.async_scraper import async_scraper
+from scrapesome import async_scraper
 
 # SUCCESS: HTTP response returns content and gets formatted
-@pytest.mark.asyncio
+@patch("scrapesome.scraper.async_scraper.async_render_page", new_callable=AsyncMock)
 @patch("scrapesome.scraper.async_scraper.format_response")
 @patch("scrapesome.scraper.async_scraper.httpx.AsyncClient.get", new_callable=AsyncMock)
-async def test_async_scraper_success_with_format(mock_get, mock_format_response):
+async def test_async_scraper_success_with_format(mock_get, mock_format_response, mock_render):
     mock_response = AsyncMock()
     mock_response.status_code = 200
-    mock_response.text = "<html><body>Hello World</body></html>"
+    # Return a long enough HTML content so fallback isn't triggered
+    mock_response.text = "<html>" + "content " * 100 + "</html>"
     mock_get.return_value = mock_response
 
     mock_format_response.return_value = "Hello World"
 
     result = await async_scraper("http://fake.com", output_format_type="text")
     assert result == "Hello World"
+
 
 # SUCCESS: fallback to JS rendering if content is too short
 @pytest.mark.asyncio

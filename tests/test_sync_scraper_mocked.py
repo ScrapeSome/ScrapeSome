@@ -1,12 +1,13 @@
 
 from unittest.mock import patch, MagicMock
 import requests
-from scrapesome.scraper.sync_scraper import sync_scraper
+from scrapesome import sync_scraper
 
 # SUCCESS: simple fetch returns content with output_format_type
+@patch("scrapesome.scraper.sync_scraper.sync_render_page")
 @patch("scrapesome.scraper.sync_scraper.format_response")
 @patch("scrapesome.scraper.sync_scraper.requests.get")
-def test_scraper_success_with_format(mock_get, mock_format_response):
+def test_scraper_success_with_format(mock_get, mock_format_response, mock_render):
     mock_response = MagicMock()
     mock_response.status_code = 200
     mock_response.text = "<html><body>Hello World</body></html>"

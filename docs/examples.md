@@ -2,7 +2,7 @@
 ## Sync Examples
 
 ```python
-from scrapesome.scraper.sync_scraper import sync_scraper
+from scrapesome import sync_scraper
 
 if __name__ == "__main__":
     url = "https://adenuniversity.us"
@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
 ```python
 import asyncio
-from scrapesome.scraper.async_scraper import async_scraper
+from scrapesome import async_scraper
 
 async def main():
     url = "https://www.sandiego.edu/academics/"
