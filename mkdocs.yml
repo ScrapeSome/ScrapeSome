@@ -1,6 +1,8 @@
 site_name: ScrapeSome
 theme:
   name: material
+  features:
+    - content.code.copy
   logo: assets/images/favicon.png
   favicon: assets/images/favicon.png
   palette:
