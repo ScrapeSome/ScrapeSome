@@ -162,7 +162,7 @@ pip install scrapesome[cli]
 ### 🔧 Basic Usage
 
 ```bash
-scrapesome scrape https://example.com
+scrapesome scrape --url https://example.com
 ```
 This performs a synchronous scrape and outputs plain text by default.
 
@@ -178,22 +178,22 @@ This performs a synchronous scrape and outputs plain text by default.
 
 #### Basic scrape
 ```bash
-scrapesome scrape https://example.com
+scrapesome scrape --url https://example.com
 ```
 
 #### Force Playwright rendering
 ```bash
-scrapesome scrape https://example.com --force-playwright
+scrapesome scrape --url https://example.com --force-playwright
 ```
 
 #### Get JSON output
 ```bash
-scrapesome scrape https://example.com --output-format json
+scrapesome scrape --url https://example.com --output-format json
 ```
 
 #### Async scrape with markdown output
 ```bash
-scrapesome scrape https://example.com --async-mode --output-format markdown
+scrapesome scrape --url https://example.com --async-mode --output-format markdown
 ```
 
 ## 🧰 Advanced Usage

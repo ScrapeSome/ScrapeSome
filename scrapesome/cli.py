@@ -43,7 +43,8 @@ def save_output(output: str, file_path: str):
 
 @app.command()
 def scrape(
-    url: Optional[List[str]] = typer.Argument(None, help="URL(s) to scrape."),
+    scrape: Optional[str] = typer.Argument(None, help="scraper."),
+    url: Optional[List[str]] = typer.Option(None, "--url", "-url", help="URL(s) to scrape."),
     file: Optional[str] = typer.Option(None, "--url-file", "-uf", help="Path to file with URLs (one per line)."),
     async_mode: bool = typer.Option(False, "--async-mode", "-a", help="Enable asynchronous scraping."),
     force_playwright: bool = typer.Option(False, "--force-playwright", "-r", help="Use Playwright for JS rendering."),

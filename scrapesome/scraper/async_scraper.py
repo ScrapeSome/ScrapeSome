@@ -29,6 +29,7 @@ logger = get_logger()
 async def async_scraper(
     url: str,
     user_agents: Optional[List[str]] = None,
+    headers: Optional[dict] = None,
     allow_redirects: bool = True,
     max_retries: int = 3,
     timeout: int = None,
@@ -63,6 +64,7 @@ async def async_scraper(
         content = await fetch_url(
             url=url,
             user_agents=user_agents,
+            headers=headers,
             allow_redirects=allow_redirects,
             max_retries=max_retries,
             timeout=timeout,
@@ -79,6 +81,7 @@ async def async_scraper(
 async def fetch_url(
     url: str,
     user_agents: Optional[List[str]],
+    headers: Optional[dict],
     allow_redirects: bool,
     max_retries: int,
     timeout: Optional[int],
@@ -117,7 +120,9 @@ async def fetch_url(
     last_exception = None
     for attempt in range(max_retries):
         ua = user_agents[attempt % len(user_agents)]
-        headers = {"User-Agent": ua}
+        custom_headers = headers or {}
+        ua_header = {"User-Agent": ua}
+        headers = {**ua_header, **custom_headers}
         logger.info(f"Attempt {attempt + 1}/{max_retries} fetching {url} with User-Agent: {ua}")
 
         try:
