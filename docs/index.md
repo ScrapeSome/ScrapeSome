@@ -8,6 +8,15 @@ Welcome to the documentation for **ScrapeSome** — a modern, async/sync-capable
 
 ---
 
+## 💡 Why Use ScrapeSome?
+
+- Handles both static and JS-heavy pages out of the box
+- Supports both sync and async scraping
+- Converts raw HTML into clean text, JSON, or Markdown
+- Works with minimal configuration (`pip install scrapesome`)
+- Handles timeouts, retries, redirects, user agents
+
+
 ## 🚀 Features
 
 - 🔁 Sync + Async scraping support
@@ -18,6 +27,22 @@ Welcome to the documentation for **ScrapeSome** — a modern, async/sync-capable
 - 🧪 Test coverage with `pytest` and `pytest-asyncio`
 
 ---
+
+## ⚖ Comparison with Alternatives
+
+| Feature                          | ScrapeSome ✅       | Scrapy              | Selenium/UC         | Playwright (Raw)     |
+|----------------------------------|---------------------|---------------------|----------------------|----------------------|
+| ✅ Sync + Async Scraping         | ✅ Built-in         | ❌ Async only*      | ❌ Manual            | ❌ Manual            |
+| 🧠 JS Rendering (Fallback)       | ✅ Seamless         | ❌ Plugin setup     | ✅ Full              | ✅ Full              |
+| 📝 Output as JSON/Markdown/HTML | ✅ Built-in         | ❌ Requires custom  | ❌ Manual parsing    | ❌ Manual parsing    |
+| 🔁 Retry & Timeout Handling      | ✅ Built-in         | ⚠️ Requires config  | ❌ Manual            | ❌ Manual            |
+| ⚡ Minimal Setup (Boilerplate)   | ✅ Near zero        | ❌ Needs project    | ❌ Driver setup      | ❌ Browser install   |
+| 🧪 Testable out-of-the-box       | ✅ Pytest-ready     | ⚠️ Complex          | ❌                   | ❌                   |
+| 🛠️ Config via .env or inline     | ✅ Simple           | ⚠️ Complex          | ❌                   | ❌                   |
+| 📦 Install & Run in <1 Min       | ✅ Yes              | ❌                  | ❌                   | ❌                   |
+
+
+
 
 ## 📦 Installation
 
@@ -41,8 +66,14 @@ scrapesome/
 ├── pytest.ini
 ├── .github/
 │   ├── workflows/
-│       └── deploy.yml
+│   │   └── deploy.yml
+│   ├── ISSUE_TEMPLATE/
+│   │   └── index.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── CODE_OF_CONDUCT.md
+│   └── SECURITY.md
 ├── __init__.py
+├── cli.py
 ├── config.py
 ├── exceptions.py
 ├── formatter/
@@ -60,6 +91,7 @@ scrapesome/
 │   ├── usage.md
 │   ├── config.md
 │   ├── examples.md
+│   ├── cli.md
 │   ├── about.md
 │   └── licence.md
 ├── tests/
@@ -76,3 +108,15 @@ scrapesome/
 
 ## 🔒 License
 MIT License © 2025
+
+### 📚 Documentation
+
+- [Getting Started](getting-started.md)
+- [Usage](usage.md)
+- [Output Formats](output-formats.md)
+- [Contribution](contribution.md)
+- [CLI Usage](cli.md)
+- [Configuration](config.md)
+- [Examples](examples.md)
+- [About / Contact](about.md)
+- [License](licence.md)

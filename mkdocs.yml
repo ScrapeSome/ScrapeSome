@@ -15,7 +15,9 @@ nav:
   - Advanced Usage: usage.md
   - Environment Configuration: config.md
   - Output Formats: output-formats.md
+  - CLI: cli.md 
   - Examples: examples.md
   - Licence: licence.md
+  - Contribution: contribution.md
 extra:
   social_image: assets/images/favicon.png

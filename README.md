@@ -2,19 +2,36 @@
 
 ![Scrapesome Logo](https://raw.githubusercontent.com/scrapesome/scrapesome/refs/heads/main/docs/assets/images/favicon.png)
 
+
+![PyPI](https://img.shields.io/pypi/v/scrapesome)
+![Python](https://img.shields.io/pypi/pyversions/scrapesome)
+![Downloads](https://img.shields.io/pypi/dm/scrapesome)
+![License](https://img.shields.io/github/license/scrapesome/scrapesome)
+![Build Status](https://github.com/scrapesome/scrapesome/actions/workflows/deploy.yml/badge.svg)
+![Issues](https://img.shields.io/github/issues/scrapesome/scrapesome)
+![Discussions](https://img.shields.io/github/discussions/scrapesome/scrapesome)
+![Contributors](https://img.shields.io/github/contributors/scrapesome/scrapesome)
+![Forks](https://img.shields.io/github/forks/scrapesome/scrapesome)
+![Stars](https://img.shields.io/github/stars/scrapesome/scrapesome)
+
+
+
 **ScrapeSome** is a lightweight, flexible web scraping library with both **synchronous** and **asynchronous** support. It includes intelligent fallbacks, JavaScript page rendering, response formatting (HTML → Text/JSON/Markdown), and retry mechanisms. Ideal for developers who need robust scraping utilities with minimal setup.
 
 ---
 
 ## Table of Contents
 
+- [💡 Why Use ScrapeSome?](#-why-use-scrapesome)
 - [🚀 Features](#-features)
+- [⚖ Comparison with Alternatives](#-comparison-with-alternatives)
 - [📦 Installation](#-installation)
 - [Playwright Setup](#playwright-setup)
   - [Windows](#windows)
   - [Linux (Ubuntu/Debian)](#linux-ubuntudebian)
   - [macOS](#macos)
 - [⚡ Quick Start](#-quick-start)
+- [🖥️ CLI Usage](#-cli-usage)
 - [🧰 Advanced Usage](#-advanced-usage)
 - [🧪 Testing](#-testing)
 - [⚙️ Environment Configuration](#️-environment-configuration)
@@ -22,6 +39,16 @@
 - [📁 Project Structure](#-project-structure)
 - [🔒 License](#-license)
 - [🤝 Contributions](#-contributions)
+
+
+## 💡 Why Use ScrapeSome?
+
+- Handles both static and JS-heavy pages out of the box
+- Supports both sync and async scraping
+- Converts raw HTML into clean text, JSON, or Markdown
+- Works with minimal configuration (`pip install scrapesome`)
+- Handles timeouts, retries, redirects, user agents
+
 
 ## 🚀 Features
 
@@ -33,6 +60,21 @@
 - 🧪 Test coverage with `pytest` and `pytest-asyncio`
 
 ---
+
+## ⚖ Comparison with Alternatives
+
+| Feature                          | ScrapeSome ✅       | Scrapy              | Selenium/UC         | Playwright (Raw)     |
+|----------------------------------|---------------------|---------------------|----------------------|----------------------|
+| ✅ Sync + Async Scraping         | ✅ Built-in         | ❌ Async only*      | ❌ Manual            | ❌ Manual            |
+| 🧠 JS Rendering (Fallback)       | ✅ Seamless         | ❌ Plugin setup     | ✅ Full              | ✅ Full              |
+| 📝 Output as JSON/Markdown/HTML | ✅ Built-in         | ❌ Requires custom  | ❌ Manual parsing    | ❌ Manual parsing    |
+| 🔁 Retry & Timeout Handling      | ✅ Built-in         | ⚠️ Requires config  | ❌ Manual            | ❌ Manual            |
+| ⚡ Minimal Setup (Boilerplate)   | ✅ Near zero        | ❌ Needs project    | ❌ Driver setup      | ❌ Browser install   |
+| 🧪 Testable out-of-the-box       | ✅ Pytest-ready     | ⚠️ Complex          | ❌                   | ❌                   |
+| 🛠️ Config via .env or inline     | ✅ Simple           | ⚠️ Complex          | ❌                   | ❌                   |
+| 📦 Install & Run in <1 Min       | ✅ Yes              | ❌                  | ❌                   | ❌                   |
+
+
 
 ## 📦 Installation
 
@@ -104,6 +146,54 @@ import asyncio
 from scrapesome import async_scraper
 html = asyncio.run(async_scraper("https://example.com"))
 html
+```
+## 🖥️ CLI Usage
+
+ScrapeSome also includes a powerful CLI for quick and easy scraping from the command line.
+
+### 📦 Installation with CLI Support
+
+To use the CLI, install with the optional `cli` extras:
+
+```bash
+pip install scrapesome[cli]
+```
+
+### 🔧 Basic Usage
+
+```bash
+scrapesome scrape https://example.com
+```
+This performs a synchronous scrape and outputs plain text by default.
+
+### ⚙️ Available Options
+| Option             | Description                               | Default |
+|--------------------|-------------------------------------------|---------|
+| `--async-mode`     | Use asynchronous scraping                  | False   |
+| `--force-playwright`| Force JavaScript rendering using Playwright | False   |
+| `--output-format`  | Choose `text`, `json`, `markdown`, or `html` | html    |
+
+
+### Examples
+
+#### Basic scrape
+```bash
+scrapesome scrape https://example.com
+```
+
+#### Force Playwright rendering
+```bash
+scrapesome scrape https://example.com --force-playwright
+```
+
+#### Get JSON output
+```bash
+scrapesome scrape https://example.com --output-format json
+```
+
+#### Async scrape with markdown output
+```bash
+scrapesome scrape https://example.com --async-mode --output-format markdown
 ```
 
 ## 🧰 Advanced Usage
@@ -252,8 +342,14 @@ scrapesome/
 ├── pytest.ini
 ├── .github/
 │   ├── workflows/
-│       └── deploy.yml
+│   │   └── deploy.yml
+│   ├── ISSUE_TEMPLATE/
+│   │   └── index.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── CODE_OF_CONDUCT.md
+│   └── SECURITY.md
 ├── __init__.py
+├── cli.py
 ├── config.py
 ├── exceptions.py
 ├── formatter/
@@ -271,6 +367,7 @@ scrapesome/
 │   ├── usage.md
 │   ├── config.md
 │   ├── examples.md
+│   ├── cli.md
 │   ├── about.md
 │   └── licence.md
 ├── tests/
@@ -298,3 +395,11 @@ To get started:
 git clone https://github.com/scrapesome/scrapesome.git
 cd scrapesome
 ```
+
+## Documentation & Community
+
+- [Contributing Guidelines](./docs/contribution.md)
+- [Code of Conduct](.github/CODEOFCONDUCT.md)
+- [Issue Templates](.github/issue_templates/index.md)
+- [Pull Request Templates](.github/pull_request_template.md)
+- [GitHub Discussions](https://github.com/scrapesome/scrapesome/discussions)
