@@ -30,17 +30,18 @@ Welcome to the documentation for **ScrapeSome** — a modern, async/sync-capable
 
 ## ⚖ Comparison with Alternatives
 
-| Feature                          | ScrapeSome ✅       | Scrapy              | Selenium/UC         | Playwright (Raw)     |
-|----------------------------------|---------------------|---------------------|----------------------|----------------------|
-| ✅ Sync + Async Scraping         | ✅ Built-in         | ❌ Async only*      | ❌ Manual            | ❌ Manual            |
-| 🧠 JS Rendering (Fallback)       | ✅ Seamless         | ❌ Plugin setup     | ✅ Full              | ✅ Full              |
-| 📝 Output as JSON/Markdown/HTML | ✅ Built-in         | ❌ Requires custom  | ❌ Manual parsing    | ❌ Manual parsing    |
-| 🔁 Retry & Timeout Handling      | ✅ Built-in         | ⚠️ Requires config  | ❌ Manual            | ❌ Manual            |
-| ⚡ Minimal Setup (Boilerplate)   | ✅ Near zero        | ❌ Needs project    | ❌ Driver setup      | ❌ Browser install   |
-| 🧪 Testable out-of-the-box       | ✅ Pytest-ready     | ⚠️ Complex          | ❌                   | ❌                   |
-| 🛠️ Config via .env or inline     | ✅ Simple           | ⚠️ Complex          | ❌                   | ❌                   |
-| 📦 Install & Run in <1 Min       | ✅ Yes              | ❌                  | ❌                   | ❌                   |
-
+| Feature                          | ScrapeSome ✅                         | Playwright (Python)        | Selenium + UC               | Requests-HTML              | Scrapy + Playwright         |
+|----------------------------------|--------------------------------------|-----------------------------|------------------------------|-----------------------------|------------------------------|
+| 🧠 JS Rendering Support          | ✅ Auto fallback on 403/JS content    | ✅ Always (manual control)  | ✅ Always (manual control)   | ✅ Partial (via Pyppeteer)  | ✅ Requires setup            |
+| 🔄 Automatic Fallback (403/Blank)| ✅ Yes (seamless)                     | ❌ Manual logic needed       | ❌ Manual logic needed        | ❌ No                       | ❌ Needs per-request config  |
+| 🔁 Uses Browser Engine           | ✅ Only when needed (Playwright)      | ✅ Always                   | ✅ Always                    | ✅ (Unstable, slow)         | ✅ Always (if enabled)       |
+| ✅ Sync + Async Support         | ✅ Built-in                           | ❌ Async only               | ❌ Manual (via threading)    | ❌ Sync only                | ❌ Async only (via plugin)   |
+| 📝 JSON/Markdown/HTML Output    | ✅ Built-in formats                   | ❌ Manual parsing           | ❌ Manual parsing            | ❌ Basic only               | ❌ Custom pipeline needed    |
+| ⚡ Minimal Setup                 | ✅ Near zero                          | ❌ Code + browser install   | ❌ Driver + setup            | ✅ Simple pip install       | ❌ Complex + plugin setup    |
+| 🔁 Retries, Timeouts, Agents    | ✅ Smart defaults built-in            | ❌ Manual handling          | ❌ Manual handling           | ❌ Limited                  | ⚠️ Partial via settings      |
+| 🧪 Pytest-Ready Out-of-the-box  | ✅ Fully testable                     | ⚠️ Requires mocks           | ❌ Hard to test              | ❌ Minimal                  | ⚠️ Needs testing harness     |
+| ⚙️ Config via .env / Inline     | ✅ Flexible and optional              | ❌ Code/config only         | ❌ Manual via code           | ❌ Hardcoded mostly         | ⚠️ Project settings          |
+| 📦 Install & Run in <1 Min      | ✅ Yes                                | ❌ Setup required           | ❌ Driver + config needed    | ✅ Yes                      | ❌ Needs project + plugin    |
 
 
 
