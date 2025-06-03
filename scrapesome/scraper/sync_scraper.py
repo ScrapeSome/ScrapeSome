@@ -22,6 +22,7 @@ from scrapesome.logging import get_logger
 from scrapesome.exceptions import ScraperError
 from scrapesome.scraper.rendering import sync_render_page
 from scrapesome.formatter.output_formatter import format_response
+from scrapesome.utils.file_writer import write
 from scrapesome.config import Settings
 
 settings = Settings()
@@ -37,11 +38,13 @@ def sync_scraper(
     max_retries: int = 3,
     timeout: int = None,
     force_playwright: bool = False,
-    output_format_type: Optional[str] = None
+    output_format_type: Optional[str] = None,
+    file_name: Optional[str] = None,
+    save_to_file: Optional[bool] = False
 ) -> Optional[str]:
     """
     Scrape a URL synchronously with retries, user-agent rotation,
-    optional JS rendering fallback, and optional output formatting.
+    optional JS rendering fallback, and optional output formatting, file writing.
 
     Args:
         url (str): URL to fetch.
@@ -51,6 +54,7 @@ def sync_scraper(
         timeout (int): HTTP request timeout in seconds.
         force_playwright (bool): If True, skip HTTP requests and use Playwright rendering directly.
         output_format_type (Optional[str]): Output format: 'text', 'json', 'markdown', or None for raw HTML.
+        save_to_file (Optional): If True, creates file in local else no.
 
     Returns:
         Optional[str]: The formatted page content or None if an error occurred.
@@ -75,10 +79,12 @@ def sync_scraper(
         )
         if output_format_type:
             content = format_response(html=content, url=url, output_format_type=output_format_type)
-        return content
+            if save_to_file:
+                file_name = write(data=content, file_name=file_name, output_format_type=output_format_type)
+        return {"data": content, "file": file_name}
     except Exception as e:
         logger.exception(e)
-        return None
+        return {"error":str(e)}
 
 def fetch_url(
     url: str,

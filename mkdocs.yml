@@ -19,5 +19,6 @@ nav:
   - Examples: examples.md
   - Licence: licence.md
   - Contribution: contribution.md
+  - File Saving: file-saving.md
 extra:
   social_image: assets/images/favicon.png

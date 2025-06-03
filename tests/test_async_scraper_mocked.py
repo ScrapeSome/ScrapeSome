@@ -18,6 +18,7 @@ async def test_async_scraper_success_with_format(mock_get, mock_format_response,
     mock_format_response.return_value = "Hello World"
 
     result = await async_scraper("http://fake.com", output_format_type="text")
+    result = result.get("data")
     assert result == "Hello World"
 
 
@@ -34,6 +35,7 @@ async def test_async_scraper_fallback_to_render(mock_get, mock_render):
     mock_render.return_value = "<html><body>Rendered Content</body></html>"
 
     result = await async_scraper("http://fake.com")
+    result = result.get("data")
     assert "Rendered Content" in result
 
 # SUCCESS: force Playwright rendering directly
@@ -43,6 +45,7 @@ async def test_async_scraper_force_playwright(mock_render):
     mock_render.return_value = "<html><body>Playwright Rendered</body></html>"
 
     result = await async_scraper("http://fake.com", force_playwright=True)
+    result = result.get("data")
     assert "Playwright Rendered" in result
 
 # FAILURE: all retries fail, and fallback fails too
@@ -51,6 +54,7 @@ async def test_async_scraper_force_playwright(mock_render):
 @patch("scrapesome.scraper.async_scraper.httpx.AsyncClient.get", side_effect=Exception("HTTP fail"))
 async def test_async_scraper_all_failures(mock_get, mock_render):
     result = await async_scraper("http://fake.com")
+    result = result.get("data")
     assert result is None
 
 
@@ -73,6 +77,7 @@ async def test_async_scraper_retries_on_403_then_succeeds(mock_get, mock_render)
 
     # Call your async scraper
     result = await async_scraper("http://fake.com")
+    result = result.get("data")
 
     # Assert recovered content found in result
     assert "Recovered" in result
@@ -89,6 +94,7 @@ async def test_async_scraper_retries_exhausted_then_render_fallback(mock_render,
     mock_get.side_effect = httpx.RequestError("Request failed")
     mock_render.return_value = "<html>Fallback Render</html>"
     result = await async_scraper("http://fake.com", max_retries=2)
+    result = result.get("data")
     assert "Fallback Render" in result
 
 # short content triggers fallback to render_page
@@ -100,4 +106,5 @@ async def test_async_scraper_short_content_triggers_render(mock_render, mock_get
     mock_get.return_value = mock_resp
     mock_render.return_value = "<html>Rendered Content</html>"
     result = await async_scraper("http://fake.com")
+    result = result.get("data")
     assert "Rendered Content" in result

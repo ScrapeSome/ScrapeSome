@@ -26,6 +26,16 @@ class Settings:
         #📤 Output Format Defaults
         self.default_output_format = self._get("OUTPUT_FORMAT", default="html")
 
+        #📁 Supported File Extensions
+        self.file_extensions = self._get("FILE_EXTENSIONS", default={
+        'json': '.json',
+        'markdown': '.md',
+        'text': '.txt',
+        'html': '.html'
+        })
+
+        
+
         self.fetch_playwright_timeout = self._get("FETCH_PLAYWRIGHT_TIMEOUT", default="60000")
         self.fetch_page_timeout = self._get("FETCH_PAGE_TIMEOUT", default="60000")
         self.default_user_agents = self._get("USER_AGENTS", default=[

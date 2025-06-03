@@ -16,6 +16,7 @@ def test_scraper_success_with_format(mock_get, mock_format_response, mock_render
     mock_format_response.return_value = "Hello World"
 
     result = sync_scraper("http://fake.com", output_format_type="text")
+    result = result.get("data")
     assert result == "Hello World"
 
 # SUCCESS: fallback to render when content is too short
@@ -30,6 +31,7 @@ def test_scraper_fallback_to_render(mock_get, mock_render):
     mock_render.return_value = "<html><body>Rendered Content</body></html>"
 
     result = sync_scraper("http://fake.com")
+    result = result.get("data")
     assert "Rendered Content" in result
 
 # SUCCESS: force Playwright rendering
@@ -38,6 +40,7 @@ def test_scraper_force_playwright(mock_render):
     mock_render.return_value = "<html><body>Playwright Content</body></html>"
 
     result = sync_scraper("http://fake.com", force_playwright=True)
+    result = result.get("data")
     assert "Playwright Content" in result
 
 # FAILURE: all retries fail and Playwright fallback also fails
@@ -45,6 +48,7 @@ def test_scraper_force_playwright(mock_render):
 @patch("scrapesome.scraper.sync_scraper.requests.get", side_effect=Exception("HTTP failed"))
 def test_scraper_all_failures(mock_get, mock_render):
     result = sync_scraper("http://fake.com")
+    result = result.get("data")
     assert result is None
 
 
@@ -62,6 +66,7 @@ def test_scraper_retries_on_403_then_succeeds(mock_get, mock_render):
     mock_get.side_effect = [mock_403, mock_200]
 
     result = sync_scraper("http://fake.com")
+    result = result.get("data")
     assert "Recovered" in result
 
 @patch("scrapesome.scraper.sync_scraper.requests.get")
@@ -72,6 +77,7 @@ def test_scraper_no_redirects(mock_get):
     mock_get.return_value = mock_response
 
     result = sync_scraper("http://fake.com", allow_redirects=False)
+    result = result.get("data")
     assert "No redirects" in result
 
 @patch("scrapesome.scraper.sync_scraper.requests.get")
@@ -82,6 +88,7 @@ def test_scraper_with_custom_user_agents(mock_get):
     mock_get.return_value = mock_response
 
     result = sync_scraper("http://fake.com", user_agents=["TestAgent/1.0"])
+    result = result.get("data")
     assert "UA test" in result
 
 # simulate multiple request exceptions then successful render fallback
@@ -90,6 +97,7 @@ def test_scraper_with_custom_user_agents(mock_get):
 def test_sync_scraper_retries_exhausted_then_render_fallback(mock_render, mock_get):
     mock_render.return_value = "<html>Fallback Render</html>"
     result = sync_scraper("http://fake.com", max_retries=2)
+    result = result.get("data")
     assert "Fallback Render" in result
 
 # simulate short response content triggers rendering fallback
@@ -100,5 +108,6 @@ def test_sync_scraper_short_content_triggers_render(mock_render, mock_get):
     mock_get.return_value = mock_resp
     mock_render.return_value = "<html>Rendered Content</html>"
     result = sync_scraper("http://fake.com")
+    result = result.get("data")
     assert "Rendered Content" in result
 

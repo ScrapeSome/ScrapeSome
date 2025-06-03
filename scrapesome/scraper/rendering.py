@@ -68,7 +68,7 @@ def sync_render_page(url: str, headers: Optional[dict] = None, timeout: int = in
                 context_args["user_agent"] = random.choice(user_agents)
             
 
-            context = browser.new_context(user_agent=context_args["user_agent"], java_script_enabled=context_args["java_script_enabled"])
+            context = browser.new_context(**context_args)
 
             # Block images and ads for performance
             context.route("**/*", lambda route, request: route.abort()
@@ -127,7 +127,7 @@ async def async_render_page(url: str, headers: Optional[dict] = None, timeout: i
                 context_args["user_agent"] = random.choice(user_agents)
             
 
-            context = browser.new_context(user_agent=context_args["user_agent"], java_script_enabled=context_args["java_script_enabled"])
+            context = await browser.new_context(**context_args)
 
 
             # Block images and ads for performance

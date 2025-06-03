@@ -30,7 +30,7 @@ We welcome everyone to contribute to ScrapeSome! To foster a positive and produc
 - Report any unacceptable behavior to the maintainers.
 - Help each other and share knowledge.
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project, you agree to abide by our [Code of Conduct](https://github.com/scrapesome/scrapesome/blob/main/.github/CODEOFCONDUCT.md).
 
 Thank you for helping us build an awesome, welcoming community!
 
@@ -52,6 +52,6 @@ We welcome everyone to contribute to ScrapeSome! To foster a positive and produc
 - Report any unacceptable behavior to the maintainers.
 - Help each other and share knowledge.
 
-By participating in this project, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project, you agree to abide by our [Code of Conduct](https://github.com/scrapesome/scrapesome/blob/main/.github/CODEOFCONDUCT.md).
 
 Thank you for helping us build an awesome, welcoming community!
