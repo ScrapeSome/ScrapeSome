@@ -7,7 +7,6 @@
 ![Python](https://img.shields.io/pypi/pyversions/scrapesome)
 ![Downloads](https://img.shields.io/pypi/dm/scrapesome)
 ![License](https://img.shields.io/github/license/scrapesome/scrapesome)
-![Build Status](https://github.com/scrapesome/scrapesome/actions/workflows/deploy.yml/badge.svg)
 ![Issues](https://img.shields.io/github/issues/scrapesome/scrapesome)
 ![Discussions](https://img.shields.io/github/discussions/scrapesome/scrapesome)
 ![Contributors](https://img.shields.io/github/contributors/scrapesome/scrapesome)
