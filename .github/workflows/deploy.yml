@@ -36,7 +36,7 @@ jobs:
 
   deploy-ui-docs:
     if: github.ref == 'refs/heads/main'  # Only run on main branch
-    name: Deploy MkDocs UI Documentation
+    name: Deploy Documentation to GitHub Pages
     runs-on: ubuntu-latest
 
     steps:
@@ -53,9 +53,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install mkdocs
 
-      - name: Build MkDocs UI Docs
-        working-directory: UI-Documentation
-        run: mkdocs build --site-dir UI-Documentation --strict
+      - name: Build UI Docs
+        run: mkdocs build --strict
 
       - name: Deploy UI Docs to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
