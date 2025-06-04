@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy-ui-docs:
-    name: Build and Deploy Documentation to GitHub Pages
+    name: Build Documentation
     runs-on: ubuntu-latest
 
     steps:
