@@ -104,7 +104,7 @@ def scrape(
 
         if save_to_file:
             file_extensions = settings.file_extensions
-            filename_with_ext = f"{file_name}.{file_extensions.get(output_format_type,'')}"
+            filename_with_ext = f"{file_name}{file_extensions.get(output_format_type,'')}"
             save_output(content, filename_with_ext)
         else:
             typer.echo(content)
