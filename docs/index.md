@@ -124,15 +124,3 @@ scrapesome/
 
 ## 🔒 License
 MIT License © 2025
-
-### 📚 Documentation
-
-- [Getting Started](getting-started.md)
-- [Usage](usage.md)
-- [Output Formats](output-formats.md)
-- [Contribution](contribution.md)
-- [CLI Usage](cli.md)
-- [Configuration](config.md)
-- [Examples](examples.md)
-- [About / Contact](about.md)
-- [License](licence.md)

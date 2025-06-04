@@ -217,10 +217,7 @@ Use these flags to save your output directly from the command line:
 #### 📦 Example:
 
 ```bash
-scrapesome scrape "https://example.com" \
-  --output-format markdown \
-  --save-to-file \
-  --file-name output
+scrapesome scrape --url "https://example.com" --output-format markdown  --save-to-file --file-name output
 ```
 
 👉 This saves the result as `output.md`.
@@ -246,13 +243,8 @@ The output will be returned as a dictionary:
 #### 📌 Example:
 
 ```python
-result = sync_scraper(
-    url="https://example.com",
-    output_format_type="json",
-    save_to_file=True,
-    file_name="example_output"
-)
-print(f"Saved output to {result['file']}")
+result = sync_scraper(url="https://example.com", output_format_type="json", save_to_file=True, file_name="example_output")
+print(f"Saved output to {result.get('file')}")
 ```
 
 Now you're set to save clean, readable data in your preferred format—programmatically or from the CLI.
@@ -472,7 +464,7 @@ git clone https://github.com/scrapesome/scrapesome.git
 cd scrapesome
 ```
 
-## Documentation & Community
+## Community
 
 - [Contributing Guidelines](./docs/contribution.md)
 - [Code of Conduct](.github/CODEOFCONDUCT.md)
