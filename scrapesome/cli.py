@@ -16,7 +16,7 @@ from typing import Optional, List
 from scrapesome import sync_scraper, async_scraper
 from scrapesome.config import Settings
 
-settings = Settings
+settings = Settings()
 
 app = typer.Typer(help="ScrapeSome CLI - Web scraping with ease.")
 
