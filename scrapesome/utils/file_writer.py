@@ -45,6 +45,9 @@ def write(data, file_name, output_format_type):
     if output_format_type not in extensions:
         raise ValueError(f"Unsupported format: {output_format_type}")
 
+    if not file_name:
+        raise ValueError("file name must be provided.")
+
     # create file_path based on file_name and output_format_type
     file_path = file_name + extensions.get(output_format_type,"")
 

@@ -14,6 +14,9 @@ import typer
 import json
 from typing import Optional, List
 from scrapesome import sync_scraper, async_scraper
+from scrapesome.config import Settings
+
+settings = Settings
 
 app = typer.Typer(help="ScrapeSome CLI - Web scraping with ease.")
 
@@ -100,7 +103,8 @@ def scrape(
             content = content.get("data", "")
 
         if save_to_file:
-            filename_with_ext = f"{file_name}.{output_format_type}"
+            file_extensions = settings.file_extensions
+            filename_with_ext = f"{file_name}.{file_extensions.get(output_format_type,'')}"
             save_output(content, filename_with_ext)
         else:
             typer.echo(content)
