@@ -41,6 +41,6 @@ where = ["."]
 include = ["scrapesome*"]
 
 [project.urls]
-"Homepage" = "https://scrapesome.onrender.com"
-"Documentation" = "https://scrapesome.onrender.com/documentation"
+"Homepage" = "http://scrapesome.github.io/scrapesome"
+"Documentation" = "http://scrapesome.github.io/scrapesome/documentation"
 "Repository" = "https://github.com/scrapesome/scrapesome"

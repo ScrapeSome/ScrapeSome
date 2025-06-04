@@ -402,6 +402,7 @@ similarly **async_scraper** can also be used.
 scrapesome/
 ├── .gitignore
 ├── pytest.ini
+├── mkdocs.yml
 ├── .github/
 │   ├── workflows/
 │   │   └── deploy.yml
@@ -423,6 +424,9 @@ scrapesome/
 │   ├── async_scraper.py
 │   ├── sync_scraper.py
 │   └── rendering.py
+├── utils/
+│   ├── __init__.py
+│   └── file_writer.py
 ├── docs/
 │   ├── index.md
 │   ├── getting_started.md
@@ -431,12 +435,23 @@ scrapesome/
 │   ├── examples.md
 │   ├── cli.md
 │   ├── about.md
-│   └── licence.md
+│   ├── licence.md
+│   ├── file-saving.md
+│   ├── contribution.md
+│   ├── output-formats.md
+│   └── assets/
+│       └── images/
+│           └── favicon.png
 ├── tests/
 │   ├── __init__.py
 │   ├── test_sync_scraper.py
 │   ├── test_async_scraper.py
-│   └── test_config.py
+│   ├── test_config.py
+│   ├── test_logging.py
+│   ├── test_rendering.py
+│   ├── test_file_writer.py
+│   ├── test_output_formatter.py
+│   └── test_cli.py
 ├── setup.py
 ├── requirements.txt
 ├── pyproject.toml

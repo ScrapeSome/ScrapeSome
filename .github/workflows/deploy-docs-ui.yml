@@ -42,7 +42,7 @@ jobs:
     needs: deploy-ui-docs
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: UI Documentation
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy

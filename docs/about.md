@@ -18,7 +18,7 @@
 |--------------------|--------------------------------------------------------|
 | 📦 PyPI Package     | [https://pypi.org/project/scrapesome/](https://pypi.org/project/scrapesome/) |
 | 🧑‍💻 GitHub Repo     | [https://github.com/scrapesome/scrapesome](https://github.com/scrapesome/scrapesome) |
-| 📄 Documentation    | [https://scrapesome.onrender.com](https://scrapesome.onrender.com) |
+| 📄 Documentation    | [http://scrapesome.github.io/scrapesome](http://scrapesome.github.io/scrapesome) |
 
 ---
 
